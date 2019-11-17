@@ -37,7 +37,7 @@ public class Camera {
             translate.mul(
                 rotate.mul(
                     scale.mul(
-                        new Vector4(v)
+                        new Vector4(v, 1)
                     )
                 )
             )

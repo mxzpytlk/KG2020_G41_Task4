@@ -34,6 +34,16 @@ public class ScreenConverter {
         int j = (int)((yr - v.getY()) * hs / hr);
         return new ScreenPoint(i, j);
     }
+    
+    /**
+     * Устанавливает новый размер экрана
+     * @param w ширина
+     * @param h высота
+     */
+    public void setScreenSize(int w, int h) {
+        setWs(w);
+        setHs(h);
+    }
 
     public double getHr() {
         return hr;

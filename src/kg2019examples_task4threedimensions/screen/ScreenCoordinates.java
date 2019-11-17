@@ -34,4 +34,11 @@ public class ScreenCoordinates {
         return yy;
     }
     
+    /**
+     * Количество точек
+     * @return количество точек
+     */
+    public int size() {
+        return xx.length;
+    }
 }
