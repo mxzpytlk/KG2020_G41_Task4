@@ -12,7 +12,7 @@ import kg2019examples_task4threedimensions.math.Vector4;
  * Описывает класс камеры, который хранит матрицы преобразования мировой системы координат в систему координат камеры.
  * @author Alexey
  */
-public class Camera {
+public class Camera implements ICamera {
     private Matrix4 translate, rotate, scale, projection;
 
     /**
@@ -32,6 +32,7 @@ public class Camera {
      * @param v вектор, который надо перевести
      * @return новый вектор
      */
+    @Override
     public Vector3 w2s(Vector3 v) {
         return projection.mul(
             translate.mul(

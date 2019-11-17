@@ -64,7 +64,7 @@ public class Scene {
      * @param drawer то, с помощью чего будем рисовать
      * @param cam камера для преобразования координат
      */
-    public void drawScene(IDrawer drawer, Camera cam) {
+    public void drawScene(IDrawer drawer, ICamera cam) {
         List<PolyLine3D> lines = new LinkedList<>();
         LinkedList<Collection<? extends IModel>> allModels = new LinkedList<>();
         allModels.add(models);

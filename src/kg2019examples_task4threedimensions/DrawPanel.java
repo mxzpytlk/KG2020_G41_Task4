@@ -19,17 +19,25 @@ import kg2019examples_task4threedimensions.third.Scene;
  *
  * @author Alexey
  */
-public class DrawPanel extends JPanel {
+public class DrawPanel extends JPanel
+        implements CameraController.RepaintListener {
     private Scene scene;
     private ScreenConverter sc;
     private Camera cam;
+    private CameraController camController;
     
     public DrawPanel() {
         super();
         sc = new ScreenConverter(-1, 1, 2, 2, 1, 1);
         cam = new Camera();
+        camController = new CameraController(cam);
         scene = new Scene(Color.WHITE.getRGB());
         scene.showAxes();
+        
+        camController.addRepaintListener(this);
+        addMouseListener(camController);
+        addMouseMotionListener(camController);
+        addMouseWheelListener(camController);
     }
     
     @Override
@@ -41,5 +49,10 @@ public class DrawPanel extends JPanel {
         scene.drawScene(dr, cam);
         g.drawImage(bi, 0, 0, null);
         graphics.dispose();
+    }
+
+    @Override
+    public void shouldRepaint() {
+        repaint();
     }
 }
