@@ -23,6 +23,7 @@ public class ScreenCoordinates {
         for (ScreenPoint p : points) {
             xx[i] = p.getI();
             yy[i] = p.getJ();
+            i++;
         }
     }
 
