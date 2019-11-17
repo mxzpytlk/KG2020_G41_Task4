@@ -84,6 +84,18 @@ public class Vector4 {
     }
     
     /**
+     * Складывает текущий вектор с другим.
+     * @param other вектор, с которым происходит сложение
+     * @return рещультирующий вектор.
+     */
+    public Vector4 add(Vector4 other) {
+        float[] array = new float[4];
+        for (int i = 0; i < array.length; i++)
+            array[i] = this.at(i) + other.at(i);
+        return new Vector4(array);
+    }
+    
+    /**
      * Очень маленькое число для сравнений
      */
     private static final float EPSILON = 1e-10f;

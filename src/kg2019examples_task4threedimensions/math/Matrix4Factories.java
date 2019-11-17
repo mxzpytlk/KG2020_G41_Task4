@@ -61,4 +61,52 @@ public final class Matrix4Factories {
     public static Matrix4 rotationXYZ(double alpha, Axis axis) {
         return rotationXYZ(alpha, axis == Axis.X ? 0 : axis == Axis.Y ? 1 : 2);
     }
+    
+    /**
+     * Создаёт новую матрицу переноса по заданным параметрам
+     * @param x X-составялющая смещения
+     * @param y Y-составляющая смещения
+     * @param z Z-составляющая смещения
+     * @return матрица переноса
+     */
+    public static Matrix4 translation(float x, float y, float z) {
+        Matrix4 m = one();
+        m.setAt(0, 3, x);
+        m.setAt(1, 3, y);
+        m.setAt(2, 3, z);
+        return m;
+    }
+    
+    /**
+     * Создаёт новую матрицу переноса на указанный вектор
+     * @param v вектор, на который производится перенос
+     * @return матрица переноса
+     */
+    public static Matrix4 translation(Vector3 v) {
+        return translation(v.getX(), v.getY(), v.getZ());
+    }
+    
+    /**
+     * Создаёт матрицу масштабирования по заданным параметрам
+     * @param factorX масштабирование вдоль оси X
+     * @param factorY масштабирование вдоль оси Y
+     * @param factorZ масштабирование вдоль оси Z
+     * @return матрица масштабирования
+     */
+    public static Matrix4 scale(float factorX, float factorY, float factorZ) {
+        Matrix4 m = one();
+        m.setAt(0, 0, factorX);
+        m.setAt(1, 1, factorY);
+        m.setAt(2, 2, factorZ);
+        return m;
+    }
+    
+    /**
+     * Создаёт матрицу масштабирования с одинаковыми коэффициентами по всем осям.
+     * @param factor коэффициент масштабирования
+     * @return матрица масштабирования
+     */
+    public static Matrix4 scale(float factor) {
+        return scale(factor, factor, factor);
+    }
 }

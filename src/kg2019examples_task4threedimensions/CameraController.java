@@ -12,7 +12,12 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.SwingUtilities;
 import kg2019examples_task4threedimensions.math.Matrix4Factories;
+import kg2019examples_task4threedimensions.math.Vector3;
+import kg2019examples_task4threedimensions.math.Vector4;
+import kg2019examples_task4threedimensions.screen.ScreenConverter;
+import kg2019examples_task4threedimensions.screen.ScreenPoint;
 import kg2019examples_task4threedimensions.third.Camera;
 
 /**
@@ -72,9 +77,11 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
     /*=============== Конец паттерна "слушатель" ==================*/
     
     private Camera camera;
+    private ScreenConverter sc;
 
-    public CameraController(Camera camera) {
+    public CameraController(Camera camera, ScreenConverter sc) {
         this.camera = camera;
+        this.sc = sc;
     }
 
     public Camera getCamera() {
@@ -85,20 +92,48 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
         this.camera = camera;
     }
 
+    public ScreenConverter getSc() {
+        return sc;
+    }
+
+    public void setSc(ScreenConverter sc) {
+        this.sc = sc;
+    }
+    
+
     @Override
     public void mouseClicked(MouseEvent e) {
         
     }
 
-    Point last;
+    /*Здесь запоминаем последнее положение мыши, для которого обрабатывали событие*/
+    private Point last;
+    /*Флаг, фиксирующий, зажата ли сейчас левая кнопка мыши*/
+    private boolean leftFlag = false;
+    /*Флаг, фиксирующий, зажата ли сейчас правая кнопка мыши*/
+    private boolean rightFlag = false;
+    
     @Override
     public void mousePressed(MouseEvent e) {
+        /*Устанавливаем флаги кнопок мыши*/
+        if (SwingUtilities.isLeftMouseButton(e))
+            leftFlag = true;
+        if (SwingUtilities.isRightMouseButton(e))
+            rightFlag = true;
         last = e.getPoint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        last = null;
+        /*Снимаем флаги кнопок мыши*/
+        if (SwingUtilities.isLeftMouseButton(e))
+            leftFlag = false;
+        if (SwingUtilities.isRightMouseButton(e))
+            rightFlag = false;
+        
+        /*Если оба сняты, то забываем точку*/
+        if (!leftFlag && !rightFlag)
+            last = null;
     }
 
     @Override
@@ -115,16 +150,29 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
     public void mouseDragged(MouseEvent e) {
         Point current = e.getPoint();
         if (last != null) {
+            /*Вычисляем разницу в пикселях*/
             int dx = current.x - last.x;
             int dy = current.y - last.y;
-            double da = dx * Math.PI / 180;
-            double db = dy * Math.PI / 280;
-            camera.modifyRotate(
-                    Matrix4Factories.rotationXYZ(da, Matrix4Factories.Axis.Y)
-                .mul(
-                    Matrix4Factories.rotationXYZ(db, Matrix4Factories.Axis.X)
-                )
-            );
+            /*Если двигаем с зажатой левой кнопкой мыши, то вращаем камеру*/
+            if (leftFlag) {
+                double da = dx * Math.PI / 180;
+                double db = dy * Math.PI / 280;
+                camera.modifyRotate(
+                        Matrix4Factories.rotationXYZ(da, Matrix4Factories.Axis.Y)
+                    .mul(
+                        Matrix4Factories.rotationXYZ(db, Matrix4Factories.Axis.X)
+                    )
+                );
+            }
+            /*Если двигаем с зажатой правой кнопкой мыши, то перемещаем камеру*/
+            if (rightFlag) {
+                Vector4 zero = new Vector4(sc.s2r(new ScreenPoint(0, 0)), 0);
+                Vector4 cur = new Vector4(sc.s2r(new ScreenPoint(dx, dy)), 0);
+                
+                /*Вектор смещения в реальных координатах с точки зрения камеры*/
+                Vector3 delta = cur.add(zero.mul(-1)).asVector3();
+                camera.modifyTranslate(Matrix4Factories.translation(delta));
+            }
         }
         last = current;
         onRepaint(); /*Оповещаем всех, что мы изменили камеру и её надо перерисовать*/
@@ -137,7 +185,14 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        
+        int delta = e.getWheelRotation();
+        float factor = 1;
+        float scale = delta < 0 ? 0.9f : 1.1f;
+        int counter = delta < 0 ? -delta : delta;
+        while (counter-- > 0)
+            factor *= scale;
+        camera.modifyScale(Matrix4Factories.scale(factor));
+        onRepaint();
     }
     
 }

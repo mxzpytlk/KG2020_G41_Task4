@@ -36,6 +36,29 @@ public class ScreenConverter {
     }
     
     /**
+     * Метод, преобразующий экранные координаты в трёхмерные.
+     * Z-составляющая при этом устанавливается в указанное значение
+     * @param p исходная трёхмерная точка
+     * @param z Z-составляющая
+     * @return результирующая трёхмерная точка.
+     */
+    public Vector3 s2r(ScreenPoint p, float z) {
+        double x = xr + p.getI() * wr / ws;
+        double y = yr - p.getJ() * hr / hs;
+        return new Vector3((float)x, (float)y, z);
+    }
+    
+    /**
+     * Метод, преобразующий экранные координаты в трёхмерные.
+     * Z-составляющая при этом устанавливается в 0
+     * @param p исходная трёхмерная точка
+     * @return результирующая трёхмерная точка.
+     */
+    public Vector3 s2r(ScreenPoint p) {
+        return s2r(p, 0);
+    }
+    
+    /**
      * Устанавливает новый размер экрана
      * @param w ширина
      * @param h высота

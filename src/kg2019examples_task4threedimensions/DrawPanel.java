@@ -30,7 +30,7 @@ public class DrawPanel extends JPanel
         super();
         sc = new ScreenConverter(-1, 1, 2, 2, 1, 1);
         cam = new Camera();
-        camController = new CameraController(cam);
+        camController = new CameraController(cam, sc);
         scene = new Scene(Color.WHITE.getRGB());
         scene.showAxes();
         
