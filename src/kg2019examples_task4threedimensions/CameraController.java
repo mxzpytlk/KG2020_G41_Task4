@@ -186,12 +186,19 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         int delta = e.getWheelRotation();
-        float factor = 1;
-        float scale = delta < 0 ? 0.9f : 1.1f;
-        int counter = delta < 0 ? -delta : delta;
-        while (counter-- > 0)
-            factor *= scale;
-        camera.modifyScale(Matrix4Factories.scale(factor));
+        /*Если зажат Control, то будем менять параметры перспективы, иначе - масштаба*/
+        if (e.isControlDown()) {
+            /*delta*5f - экспериментально подобранное число. Чем меньше, тем быстрее будет изменяться точка схода*/
+            camera.modifyProjection(Matrix4Factories.centralProjection(delta*5f, Matrix4Factories.Axis.Z));
+        } else {
+            /*Вычислим коэффициент масштаба*/
+            float factor = 1;
+            float scale = delta < 0 ? 0.9f : 1.1f;
+            int counter = delta < 0 ? -delta : delta;
+            while (counter-- > 0)
+                factor *= scale;
+            camera.modifyScale(Matrix4Factories.scale(factor));
+        }
         onRepaint();
     }
     

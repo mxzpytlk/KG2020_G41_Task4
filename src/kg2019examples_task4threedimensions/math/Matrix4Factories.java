@@ -109,4 +109,28 @@ public final class Matrix4Factories {
     public static Matrix4 scale(float factor) {
         return scale(factor, factor, factor);
     }
+    
+    /**
+     * Создаёт матрицу центральной проекции вдоль выбранной оси
+     * @param point точка схода на этой оси
+     * @param axisIndex номер оси (X=0, Y=1, Z=2)
+     * @return Матрица проекции
+     */
+    public static Matrix4 centralProjection(float point, int axisIndex) {
+        Matrix4 m = one();
+        if (axisIndex < 0 || axisIndex > 2)
+            return m;
+        m.setAt(3, axisIndex, 1/point);
+        return m;
+    }
+    
+    /**
+     * Создаёт матрицу центральной проекции вдоль выбранной оси
+     * @param point точка схода на этой оси
+     * @param axis название оси
+     * @return Матрица проекции
+     */
+    public static Matrix4 centralProjection(float point, Axis axis) {
+        return centralProjection(point, axis == Axis.X ? 0 : axis == Axis.Y ? 1 : 2);
+    }
 }
