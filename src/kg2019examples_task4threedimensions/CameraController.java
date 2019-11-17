@@ -112,6 +112,8 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
     private boolean leftFlag = false;
     /*Флаг, фиксирующий, зажата ли сейчас правая кнопка мыши*/
     private boolean rightFlag = false;
+    /*Флаг, фиксирующий, зажата ли сейчас средняя кнопка мыши*/
+    private boolean middleFlag = false;
     
     @Override
     public void mousePressed(MouseEvent e) {
@@ -120,6 +122,8 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
             leftFlag = true;
         if (SwingUtilities.isRightMouseButton(e))
             rightFlag = true;
+        if (SwingUtilities.isMiddleMouseButton(e))
+            middleFlag = true;
         last = e.getPoint();
     }
 
@@ -130,9 +134,11 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
             leftFlag = false;
         if (SwingUtilities.isRightMouseButton(e))
             rightFlag = false;
+        if (SwingUtilities.isMiddleMouseButton(e))
+            middleFlag = false;
         
         /*Если оба сняты, то забываем точку*/
-        if (!leftFlag && !rightFlag)
+        if (!leftFlag && !rightFlag && !middleFlag)
             last = null;
     }
 
@@ -164,7 +170,7 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
                     )
                 );
             }
-            /*Если двигаем с зажатой правой кнопкой мыши, то перемещаем камеру*/
+            /*Если двигаем с зажатой правой кнопкой мыши, то перемещаем камеру вдоль осей X и Y*/
             if (rightFlag) {
                 Vector4 zero = new Vector4(sc.s2r(new ScreenPoint(0, 0)), 0);
                 Vector4 cur = new Vector4(sc.s2r(new ScreenPoint(dx, dy)), 0);
@@ -172,6 +178,20 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
                 /*Вектор смещения в реальных координатах с точки зрения камеры*/
                 Vector3 delta = cur.add(zero.mul(-1)).asVector3();
                 camera.modifyTranslate(Matrix4Factories.translation(delta));
+            }
+            /* Если двигаем с зажатой средней кнопкой мыши, то перемещаем камеру 
+             * вдоль оси Z на расстояние равное изменению положения мыши в реальных координатах.
+             * Направление выбирается положительное при движении вверх.
+             */
+            if (middleFlag && dy != 0) {
+                Vector4 zero = new Vector4(sc.s2r(new ScreenPoint(0, 0)), 0);
+                Vector4 cur = new Vector4(sc.s2r(new ScreenPoint(dx, dy)), 0);
+                /*Длина вектор смещения в реальных координатах с точки зрения камеры*/
+                float length = cur.add(zero.mul(-1)).asVector3().length();
+                if (dy < 0)
+                    length = -length;
+                System.out.println(length);
+                camera.modifyTranslate(Matrix4Factories.translation(0, 0, length));
             }
         }
         last = current;
