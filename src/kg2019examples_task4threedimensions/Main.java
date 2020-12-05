@@ -19,7 +19,6 @@ public class Main {
      */
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-//        frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.setSize(900, 900);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.add(new DrawPanel());

@@ -43,7 +43,8 @@ public class DrawPanel extends JPanel
 
 //        scene.getModelsList().add(new Tetrahedron(new Vector3(0, 1, 0), 1));
 
-        scene.getModelsList().add(new Icosahedron(new Vector3(0, 0, 0), 0.5f));
+        scene.getModelsList().add(new Icosahedron(new Vector3(0, 0, 0), 0.3f));
+//        scene.getModelsList().add(new Dodecahedron(new Vector3(0, 0, 0), 0.3f));
         camController.addRepaintListener(this);
         addMouseListener(camController);
         addMouseMotionListener(camController);
