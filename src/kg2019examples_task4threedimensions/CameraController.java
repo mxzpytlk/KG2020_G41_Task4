@@ -37,7 +37,7 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
     /**
      * Интерфейс, объявляющий набор метод, которые обязан реализовать слушатель
      */
-    public static interface RepaintListener {
+    public interface RepaintListener {
         /**
          * Метод, вызываемый при изменении
          */
@@ -48,7 +48,7 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
     /* Далее описывается приватная коллекция, в данном случае - Set, 
      * где будет хрнаиться список всех слушателей, подписанных на данное событие.
      */
-    private Set<RepaintListener> listeners = new HashSet<>();
+    private final Set<RepaintListener> listeners = new HashSet<>();
     
     /**
      * Метод добавления слушателя

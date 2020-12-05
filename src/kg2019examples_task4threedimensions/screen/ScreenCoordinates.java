@@ -11,7 +11,8 @@ import java.util.Collection;
  * @author Alexey
  */
 public class ScreenCoordinates {
-    private int[] xx, yy;
+    private final int[] xx;
+    private final int[] yy;
     /**
      * Создаёт экзмпляр на основе коллекции экранных точек
      * @param points точки

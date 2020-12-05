@@ -19,8 +19,8 @@ import kg2019examples_task4threedimensions.third.PolyLine3D;
  * @author Alexey
  */
 public abstract class ScreenGraphicsDrawer implements IDrawer {
-    private ScreenConverter sc;
-    private Graphics2D gr;
+    private final ScreenConverter sc;
+    private final Graphics2D gr;
 
     /**
      * Создаёт экземпляр рисвальщика

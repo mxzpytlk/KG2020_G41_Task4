@@ -18,13 +18,13 @@ import models.Line3D;
  * @author Alexey
  */
 public class Scene {
-    private List<IModel> models = new ArrayList<>();
+    private final List<IModel> models = new ArrayList<>();
 
     public List<IModel> getModelsList() {
         return models;
     }
     
-    private int backgroundColor;
+    private final int backgroundColor;
 
     /**
      * Создаём сцену с заданным фоном
@@ -56,7 +56,10 @@ public class Scene {
     private static final List<Line3D> axes = Arrays.asList(
             new Line3D(new Vector3(0, 0, 0), new Vector3(1, 0, 0)),
             new Line3D(new Vector3(0, 0, 0), new Vector3(0, 1, 0)),
-            new Line3D(new Vector3(0, 0, 0), new Vector3(0, 0, 1))
+            new Line3D(new Vector3(0, 0, 0), new Vector3(0, 0, 1)),
+            new Line3D(new Vector3(0, 0, 0), new Vector3(0, 0, -1)),
+            new Line3D(new Vector3(0, 0, 0), new Vector3(-1, 0, 0)),
+            new Line3D(new Vector3(0, 0, 0), new Vector3(0, -1, 0))
     );
     
     /**

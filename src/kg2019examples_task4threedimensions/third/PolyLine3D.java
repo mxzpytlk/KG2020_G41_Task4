@@ -15,8 +15,8 @@ import kg2019examples_task4threedimensions.math.Vector3;
  * @author Alexey
  */
 public class PolyLine3D {
-    private List<Vector3> points;
-    private boolean closed;
+    private final List<Vector3> points;
+    private final boolean closed;
 
     /**
      * Создаёт новую полилинию на основе трёхмерных точек.

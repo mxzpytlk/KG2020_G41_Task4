@@ -50,8 +50,8 @@ public final class Matrix4Factories {
         return m;
     }
     
-    public static enum Axis {X, Y, Z};
-    
+    public enum Axis {X, Y, Z}
+
     /**
      * Создаёт матрицу поворота вокруго одной из осей на заданный угол в радианах
      * @param alpha угол в радианах

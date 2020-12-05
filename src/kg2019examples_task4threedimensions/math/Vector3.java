@@ -9,7 +9,7 @@ package kg2019examples_task4threedimensions.math;
  * @author Alexey
  */
 public class Vector3 {
-    private float[] values; /*Значения хранятся в виде массива из трёх элементов*/
+    private final float[] values; /*Значения хранятся в виде массива из трёх элементов*/
     
     /**
      * Создаёт экземпляр вектора на основе значений трёх составляющих

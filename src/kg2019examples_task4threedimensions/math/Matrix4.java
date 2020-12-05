@@ -10,7 +10,7 @@ package kg2019examples_task4threedimensions.math;
  * @author Alexey
  */
 public class Matrix4 {
-    private float[] matrix;
+    private final float[] matrix;
     
     /**
      * Создаёт экзмпляр матрицы на основе двумерного массива.

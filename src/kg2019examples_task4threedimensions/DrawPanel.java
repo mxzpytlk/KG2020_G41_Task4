@@ -16,6 +16,7 @@ import kg2019examples_task4threedimensions.screen.ScreenConverter;
 import kg2019examples_task4threedimensions.third.Camera;
 import kg2019examples_task4threedimensions.third.Scene;
 import models.Parallelepiped;
+import models.Tetrahedron;
 
 /**
  *
@@ -23,10 +24,10 @@ import models.Parallelepiped;
  */
 public class DrawPanel extends JPanel
         implements CameraController.RepaintListener {
-    private Scene scene;
-    private ScreenConverter sc;
-    private Camera cam;
-    private CameraController camController;
+    private final Scene scene;
+    private final ScreenConverter sc;
+    private final Camera cam;
+    private final CameraController camController;
     
     public DrawPanel() {
         super();
@@ -36,11 +37,13 @@ public class DrawPanel extends JPanel
         scene = new Scene(Color.WHITE.getRGB());
         scene.showAxes();
         
-        scene.getModelsList().add(new Parallelepiped(
+        /*scene.getModelsList().add(new Parallelepiped(
                 new Vector3(-0.4f, -0.4f, -0.4f), 
                 new Vector3(0.4f, 0.4f, 0.4f)
-        ));
-        
+        ));*/
+
+        scene.getModelsList().add(new Tetrahedron(new Vector3(0, 1, 0), 1));
+
         camController.addRepaintListener(this);
         addMouseListener(camController);
         addMouseMotionListener(camController);

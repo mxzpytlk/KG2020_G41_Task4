@@ -16,7 +16,8 @@ import kg2019examples_task4threedimensions.third.PolyLine3D;
  * @author Alexey
  */
 public class Parallelepiped implements IModel {
-    private Vector3 LTF, RBN;
+    private final Vector3 LTF;
+    private final Vector3 RBN;
 
     /**
      * Создаёт экземпляр параллелипипеда
@@ -33,49 +34,37 @@ public class Parallelepiped implements IModel {
     public List<PolyLine3D> getLines() {
         LinkedList<PolyLine3D> lines = new LinkedList<>();
         /*Дальняя сторона (Z фиксирован и вязт у LTF)*/
-        lines.add(new PolyLine3D(Arrays.asList(new Vector3[]{
-                    new Vector3(LTF.getX(), LTF.getY(), LTF.getZ()),
-                    new Vector3(LTF.getX(), RBN.getY(), LTF.getZ()),
-                    new Vector3(RBN.getX(), RBN.getY(), LTF.getZ()),
-                    new Vector3(RBN.getX(), LTF.getY(), LTF.getZ())
-                }), true));
+        lines.add(new PolyLine3D(Arrays.asList(new Vector3(LTF.getX(), LTF.getY(), LTF.getZ()),
+                new Vector3(LTF.getX(), RBN.getY(), LTF.getZ()),
+                new Vector3(RBN.getX(), RBN.getY(), LTF.getZ()),
+                new Vector3(RBN.getX(), LTF.getY(), LTF.getZ())), true));
         /*Ближняя сторона  (Z фиксирован и вязт у RBN)*/
-        lines.add(new PolyLine3D(Arrays.asList(new Vector3[]{
-                    new Vector3(LTF.getX(), LTF.getY(), RBN.getZ()),
-                    new Vector3(LTF.getX(), RBN.getY(), RBN.getZ()),
-                    new Vector3(RBN.getX(), RBN.getY(), RBN.getZ()),
-                    new Vector3(RBN.getX(), LTF.getY(), RBN.getZ())
-                }), true));
+        lines.add(new PolyLine3D(Arrays.asList(new Vector3(LTF.getX(), LTF.getY(), RBN.getZ()),
+                new Vector3(LTF.getX(), RBN.getY(), RBN.getZ()),
+                new Vector3(RBN.getX(), RBN.getY(), RBN.getZ()),
+                new Vector3(RBN.getX(), LTF.getY(), RBN.getZ())), true));
         
         /*Верхняя сторона (Y фиксирован и вязт у LTF)*/
-        lines.add(new PolyLine3D(Arrays.asList(new Vector3[]{
-                    new Vector3(LTF.getX(), LTF.getY(), LTF.getZ()),
-                    new Vector3(LTF.getX(), LTF.getY(), RBN.getZ()),
-                    new Vector3(RBN.getX(), LTF.getY(), RBN.getZ()),
-                    new Vector3(RBN.getX(), LTF.getY(), LTF.getZ())
-                }), true));
+        lines.add(new PolyLine3D(Arrays.asList(new Vector3(LTF.getX(), LTF.getY(), LTF.getZ()),
+                new Vector3(LTF.getX(), LTF.getY(), RBN.getZ()),
+                new Vector3(RBN.getX(), LTF.getY(), RBN.getZ()),
+                new Vector3(RBN.getX(), LTF.getY(), LTF.getZ())), true));
         /*Нижняя сторона (Y фиксирован и вязт у RBN)*/
-        lines.add(new PolyLine3D(Arrays.asList(new Vector3[]{
-                    new Vector3(LTF.getX(), RBN.getY(), LTF.getZ()),
-                    new Vector3(LTF.getX(), RBN.getY(), RBN.getZ()),
-                    new Vector3(RBN.getX(), RBN.getY(), RBN.getZ()),
-                    new Vector3(RBN.getX(), RBN.getY(), LTF.getZ())
-                }), true));
+        lines.add(new PolyLine3D(Arrays.asList(new Vector3(LTF.getX(), RBN.getY(), LTF.getZ()),
+                new Vector3(LTF.getX(), RBN.getY(), RBN.getZ()),
+                new Vector3(RBN.getX(), RBN.getY(), RBN.getZ()),
+                new Vector3(RBN.getX(), RBN.getY(), LTF.getZ())), true));
         
         /*Левая сторона (X фиксирован и вязт у LTF)*/
-        lines.add(new PolyLine3D(Arrays.asList(new Vector3[]{
-                    new Vector3(LTF.getX(), LTF.getY(), LTF.getZ()),
-                    new Vector3(LTF.getX(), LTF.getY(), RBN.getZ()),
-                    new Vector3(LTF.getX(), RBN.getY(), RBN.getZ()),
-                    new Vector3(LTF.getX(), RBN.getY(), LTF.getZ())
-                }), true));
+        lines.add(new PolyLine3D(Arrays.asList(new Vector3(LTF.getX(), LTF.getY(), LTF.getZ()),
+                new Vector3(LTF.getX(), LTF.getY(), RBN.getZ()),
+                new Vector3(LTF.getX(), RBN.getY(), RBN.getZ()),
+                new Vector3(LTF.getX(), RBN.getY(), LTF.getZ())), true));
         /*Правая сторона (X фиксирован и вязт у RBN)*/
-        lines.add(new PolyLine3D(Arrays.asList(new Vector3[]{
-                    new Vector3(RBN.getX(), LTF.getY(), LTF.getZ()),
-                    new Vector3(RBN.getX(), LTF.getY(), RBN.getZ()),
-                    new Vector3(RBN.getX(), RBN.getY(), RBN.getZ()),
-                    new Vector3(RBN.getX(), RBN.getY(), LTF.getZ())
-                }), true));
+        lines.add(new PolyLine3D(Arrays.asList(new Vector3(RBN.getX(), LTF.getY(), LTF.getZ()),
+                new Vector3(RBN.getX(), LTF.getY(), RBN.getZ()),
+                new Vector3(RBN.getX(), RBN.getY(), RBN.getZ()),
+                new Vector3(RBN.getX(), RBN.getY(), LTF.getZ())), true));
         
         return lines;
     }

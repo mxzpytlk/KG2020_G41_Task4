@@ -15,7 +15,8 @@ import kg2019examples_task4threedimensions.third.PolyLine3D;
  * @author Alexey
  */
 public class Line3D implements IModel {
-    private Vector3 p1, p2;
+    private final Vector3 p1;
+    private final Vector3 p2;
 
     public Line3D(Vector3 p1, Vector3 p2) {
         this.p1 = p1;
