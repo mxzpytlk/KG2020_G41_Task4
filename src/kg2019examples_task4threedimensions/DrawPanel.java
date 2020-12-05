@@ -17,6 +17,8 @@ import kg2019examples_task4threedimensions.third.Camera;
 import kg2019examples_task4threedimensions.third.Scene;
 import models.*;
 
+import static java.lang.Math.sqrt;
+
 /**
  *
  * @author Alexey
@@ -34,23 +36,46 @@ public class DrawPanel extends JPanel
         cam = new Camera();
         camController = new CameraController(cam, sc);
         scene = new Scene(Color.WHITE.getRGB());
-        scene.showAxes();
-        
-        /*scene.getModelsList().add(new Parallelepiped(
-                new Vector3(-0.4f, -0.4f, -0.4f),
-                new Vector3(0.4f, 0.4f, 0.4f)
-        ));*/
-
-//        scene.getModelsList().add(new Tetrahedron(new Vector3(0, 1, 0), 1));
-
-        scene.getModelsList().add(new Icosahedron(new Vector3(0, 0, 0), 0.3f));
-//        scene.getModelsList().add(new Dodecahedron(new Vector3(0, 0, 0), 0.3f));
+        scene.hideAxes();
+        scene.getModelsList().add(new Parallelepiped(new Vector3(-0.5f, 0.5f, -0.5f),
+                new Vector3(0.5f, -0.5f, 0.5f)));
         camController.addRepaintListener(this);
         addMouseListener(camController);
         addMouseMotionListener(camController);
         addMouseWheelListener(camController);
     }
-    
+
+    public void setTetrahedron() {
+        scene.getModelsList().remove(0);
+        scene.getModelsList().add(new Tetrahedron(new Vector3(0, 1, 0), (float) sqrt(1.5)));
+        repaint();
+    }
+
+    public void setCube() {
+        scene.getModelsList().remove(0);
+        scene.getModelsList().add(new Parallelepiped(new Vector3(-0.5f, 0.5f, -0.5f),
+                new Vector3(0.5f, -0.5f, 0.5f)));
+        repaint();
+    }
+
+    public void setOctahedron() {
+        scene.getModelsList().remove(0);
+        scene.getModelsList().add(new Octahedron(new Vector3(0, 0, 0), 1f));
+        repaint();
+    }
+
+    public void setIcosahedron() {
+        scene.getModelsList().remove(0);
+        scene.getModelsList().add(new Icosahedron(new Vector3(0, 0, 0), 0.5f));
+        repaint();
+    }
+
+    public void setDodecahedron() {
+        scene.getModelsList().remove(0);
+        scene.getModelsList().add(new Dodecahedron(new Vector3(0, 0, 0), 0.5f));
+        repaint();
+    }
+
     @Override
     public void paint(Graphics g) {
         sc.setScreenSize(getWidth(), getHeight());
