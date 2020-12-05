@@ -15,8 +15,7 @@ import kg2019examples_task4threedimensions.math.Vector3;
 import kg2019examples_task4threedimensions.screen.ScreenConverter;
 import kg2019examples_task4threedimensions.third.Camera;
 import kg2019examples_task4threedimensions.third.Scene;
-import models.Parallelepiped;
-import models.Tetrahedron;
+import models.*;
 
 /**
  *
@@ -38,12 +37,13 @@ public class DrawPanel extends JPanel
         scene.showAxes();
         
         /*scene.getModelsList().add(new Parallelepiped(
-                new Vector3(-0.4f, -0.4f, -0.4f), 
+                new Vector3(-0.4f, -0.4f, -0.4f),
                 new Vector3(0.4f, 0.4f, 0.4f)
         ));*/
 
-        scene.getModelsList().add(new Tetrahedron(new Vector3(0, 1, 0), 1));
+//        scene.getModelsList().add(new Tetrahedron(new Vector3(0, 1, 0), 1));
 
+        scene.getModelsList().add(new Icosahedron(new Vector3(0, 0, 0), 0.5f));
         camController.addRepaintListener(this);
         addMouseListener(camController);
         addMouseMotionListener(camController);
