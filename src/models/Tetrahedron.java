@@ -24,26 +24,72 @@ public class Tetrahedron implements IModel {
         LinkedList<PolyLine3D> lines = new LinkedList<>();
         /* Основание */
         lines.add(new PolyLine3D(Arrays.asList(
-            new Vector3(top.getX(), top.getY() - length * (float) sqrt(3) / 2, top.getZ() + length / (float) sqrt(3)),
-            new Vector3(top.getX() - length / 2, top.getY() - length * (float) sqrt(3) / 2,
-                    top.getZ() - length / (2 * (float) sqrt(3))),
-            new Vector3(top.getX() + length / 2, top.getY() - length * (float) sqrt(3) / 2,
-                    top.getZ() - length / (2 * (float) sqrt(3)))
+                new Vector3(top.getX() - length / 2, top.getY() - length * (float) sqrt(2f / 3),
+                        top.getZ() - length / (2 * (float) sqrt(3))),
+                new Vector3(top.getX() + length / 2, top.getY() - length * (float) sqrt(2f / 3),
+                        top.getZ() - length / (2 * (float) sqrt(3))),
+                new Vector3(top.getX(), top.getY() - length * (float) sqrt(2f / 3),
+                        top.getZ() + length /  (float) sqrt(3))
         ), true));
 
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Vector3(top.getX() - length / 2, top.getY() - length * (float) sqrt(2f / 3),
+                        top.getZ() - length / (2 * (float) sqrt(3))),
+                top,
+                new Vector3(top.getX(), top.getY() - length * (float) sqrt(2f / 3),
+                        top.getZ() + length /  (float) sqrt(3))
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
-                new Vector3(top.getX(), top.getY() - length * (float) sqrt(3) / 2, top.getZ() + length / (float) sqrt(3)),
                 top,
-                new Vector3(top.getX() + length / 2, top.getY() - length * (float) sqrt(3) / 2,
-                        top.getZ() - length / (2 * (float) sqrt(3)))
-        ), false));
+                new Vector3(top.getX() + length / 2, top.getY() - length * (float) sqrt(2f / 3),
+                        top.getZ() - length / (2 * (float) sqrt(3))),
+                new Vector3(top.getX(), top.getY() - length * (float) sqrt(2f / 3),
+                        top.getZ() + length /  (float) sqrt(3))
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
-                top,
-                new Vector3(top.getX() - length / 2, top.getY() - length * (float) sqrt(3) / 2,
-                        top.getZ() - length / (2 * (float) sqrt(3)))
-        ), false));
+                new Vector3(top.getX() - length / 2, top.getY() - length * (float) sqrt(2f / 3),
+                        top.getZ() - length / (2 * (float) sqrt(3))),
+                new Vector3(top.getX() + length / 2, top.getY() - length * (float) sqrt(2f / 3),
+                        top.getZ() - length / (2 * (float) sqrt(3))),
+                top
+        ), true));
+//        lines.add(new PolyLine3D(Arrays.asList(
+//            new Vector3(top.getX(), top.getY() - length * (float) sqrt(3) / 2, top.getZ() + length / (float) sqrt(3)),
+//            new Vector3(top.getX() - length / 2, top.getY() - length * (float) sqrt(3) / 2,
+//                    top.getZ() - length / (2 * (float) sqrt(3))),
+//            new Vector3(top.getX() + length / 2, top.getY() - length * (float) sqrt(3) / 2,
+//                    top.getZ() - length / (2 * (float) sqrt(3)))
+//        ), true));
+//
+//
+//        lines.add(new PolyLine3D(Arrays.asList(
+//                new Vector3(top.getX(), top.getY() - length * (float) sqrt(3) / 2, top.getZ() + length / (float) sqrt(3)),
+//                top,
+//                new Vector3(top.getX() + length / 2, top.getY() - length * (float) sqrt(3) / 2,
+//                        top.getZ() - length / (2 * (float) sqrt(3)))
+//        ), true));
+//
+//        lines.add(new PolyLine3D(Arrays.asList(
+//                new Vector3(top.getX() + length / 2, top.getY() - length * (float) sqrt(3) / 2,
+//                        top.getZ() - length / (2 * (float) sqrt(3))),
+//                top,
+//                new Vector3(top.getX() - length / 2, top.getY() - length * (float) sqrt(3) / 2,
+//                        top.getZ() - length / (2 * (float) sqrt(3)))
+//        ), true));
+//
+//        lines.add(new PolyLine3D(Arrays.asList(
+//                new Vector3(top.getX() - length / 2, top.getY() - length * (float) sqrt(3) / 2,
+//                        top.getZ() - length / (2 * (float) sqrt(3))),
+//                top,
+//                new Vector3(top.getX(), top.getY() - length * (float) sqrt(3) / 2, top.getZ() + length / (float) sqrt(3))
+//        ), true));
+//        lines.add(new PolyLine3D(Arrays.asList(
+//                top,
+//                new Vector3(top.getX() - length / 2, top.getY() - length * (float) sqrt(3) / 2,
+//                        top.getZ() - length / (2 * (float) sqrt(3))),
+//        ), true));
         return lines;
     }
 }

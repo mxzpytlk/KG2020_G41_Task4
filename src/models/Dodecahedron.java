@@ -109,7 +109,7 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent )
                 ).getCentre()
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
                 new Triangle3D(
@@ -137,7 +137,7 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius),
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent )
                 ).getCentre()
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
                 new Triangle3D(
@@ -162,7 +162,7 @@ public class Dodecahedron implements IModel {
                 ).getCentre()
 
 
-        ), false));
+        ), true));
 
         lines.add( new PolyLine3D(Arrays.asList(
                 new Triangle3D(
@@ -175,7 +175,7 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent )
                 ).getCentre()
-        ), false));
+        ), true));
 
         lines.add( new PolyLine3D(Arrays.asList(
                 new Triangle3D(
@@ -188,7 +188,7 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent )
                 ).getCentre()
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
                 new Triangle3D(
@@ -213,7 +213,7 @@ public class Dodecahedron implements IModel {
                 ).getCentre()
 
 
-        ), false));
+        ), true));
 
         lines.add( new PolyLine3D(Arrays.asList(
                 new Triangle3D(
@@ -226,7 +226,7 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() ),
                         new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent )
                 ).getCentre()
-        ), false));
+        ), true));
 
         lines.add( new PolyLine3D(Arrays.asList(
                 new Triangle3D(
@@ -239,7 +239,7 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() ),
                         new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent )
                 ).getCentre()
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(
                 Arrays.asList(
@@ -252,7 +252,7 @@ public class Dodecahedron implements IModel {
                                 new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
                                 new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() )
                         ).getCentre()
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(
                 Arrays.asList(
@@ -265,7 +265,7 @@ public class Dodecahedron implements IModel {
                                 new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
                                 new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() )
                         ).getCentre()
-                ), false));
+                ), true));
 
         return lines;
     }

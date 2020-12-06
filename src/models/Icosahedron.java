@@ -48,7 +48,7 @@ public class Icosahedron implements IModel {
                 new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
                 new Vector3(center.getX() - radius, center.getY(), center.getZ()  + indent),
                 new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius)
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
                 new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
@@ -60,13 +60,13 @@ public class Icosahedron implements IModel {
                 new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
                 new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
                 new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() )
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
                 new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
                 new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius),
                 new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() )
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
                 new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
@@ -78,7 +78,7 @@ public class Icosahedron implements IModel {
                 new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius),
                 new Vector3(center.getX() - radius, center.getY(), center.getZ()  - indent),
                 new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius)
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
                 new Vector3(center.getX() + radius, center.getY(), center.getZ() + indent),
@@ -96,13 +96,13 @@ public class Icosahedron implements IModel {
                 new Vector3(center.getX() + radius, center.getY(), center.getZ() + indent),
                 new Vector3(center.getX() + indent, center.getY() - radius, center.getZ()),
                 new Vector3(center.getX() + radius, center.getY(), center.getZ()  - indent)
-        ), false));
+        ), true));
 
         lines.add(new PolyLine3D(Arrays.asList(
                 new Vector3(center.getX() - radius, center.getY(), center.getZ() + indent),
                 new Vector3(center.getX() - indent, center.getY() - radius, center.getZ()),
                 new Vector3(center.getX() - radius, center.getY(), center.getZ()  - indent)
-        ), false));
+        ), true));
 
         return lines;
     }

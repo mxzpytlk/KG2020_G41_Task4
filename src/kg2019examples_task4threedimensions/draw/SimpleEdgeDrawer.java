@@ -45,10 +45,17 @@ public class SimpleEdgeDrawer extends ScreenGraphicsDrawer {
         /*создаём хранилище этих точек в виде двух массивов*/
         ScreenCoordinates crds = new ScreenCoordinates(points);
         /*если линия замкнута - рисем полиго, иначе - полилинию*/
-        if (polyline.isClosed())
+        getGraphics().setColor(Color.WHITE);
+        if (polyline.isClosed()) {
+            getGraphics().fillPolygon(crds.getXx(), crds.getYy(), crds.size());
+            getGraphics().setColor(Color.BLACK);
             getGraphics().drawPolygon(crds.getXx(), crds.getYy(), crds.size());
-        else
+        }
+        else {
+            getGraphics().fillPolygon(crds.getXx(), crds.getYy(), crds.size());
+            getGraphics().setColor(Color.BLACK);
             getGraphics().drawPolyline(crds.getXx(), crds.getYy(), crds.size());
+        }
     }
 
     /**
@@ -60,6 +67,7 @@ public class SimpleEdgeDrawer extends ScreenGraphicsDrawer {
         return new IFilter<PolyLine3D>() {
             @Override
             public boolean permit(PolyLine3D line) {
+//                return line.avgZ() >= 0;
                 return true;
             }
         };
