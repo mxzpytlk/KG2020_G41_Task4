@@ -22,8 +22,54 @@ public class Octahedron implements IModel {
     @Override
     public List<PolyLine3D> getLines() {
         LinkedList<PolyLine3D> lines = new LinkedList<>();
-        /* Основание */
         lines.add(new PolyLine3D(Arrays.asList(
+                new Vector3(center.getX() + length / 2, center.getY(), center.getZ() + length / 2),
+                new Vector3(center.getX(), center.getY() + length / (float) sqrt(2), center.getZ()),
+                new Vector3(center.getX() + length / 2, center.getY(), center.getZ() - length / 2)
+        ), true));
+
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Vector3(center.getX() + length / 2, center.getY(), center.getZ() - length / 2),
+                new Vector3(center.getX(), center.getY() + length / (float) sqrt(2), center.getZ()),
+                new Vector3(center.getX() - length / 2, center.getY(), center.getZ() - length / 2)
+        ), true));
+
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Vector3(center.getX() - length / 2, center.getY(), center.getZ() - length / 2),
+                new Vector3(center.getX(), center.getY() + length / (float) sqrt(2), center.getZ()),
+                new Vector3(center.getX() - length / 2, center.getY(), center.getZ() + length / 2)
+        ), true));
+
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Vector3(center.getX() - length / 2, center.getY(), center.getZ() + length / 2),
+                new Vector3(center.getX(), center.getY() + length / (float) sqrt(2), center.getZ()),
+                new Vector3(center.getX() + length / 2, center.getY(), center.getZ() + length / 2)
+        ), true));
+
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Vector3(center.getX() + length / 2, center.getY(), center.getZ() + length / 2),
+                new Vector3(center.getX(), center.getY() - length / (float) sqrt(2), center.getZ()),
+                new Vector3(center.getX() + length / 2, center.getY(), center.getZ() - length / 2)
+        ), true));
+
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Vector3(center.getX() + length / 2, center.getY(), center.getZ() - length / 2),
+                new Vector3(center.getX(), center.getY() - length / (float) sqrt(2), center.getZ()),
+                new Vector3(center.getX() - length / 2, center.getY(), center.getZ() - length / 2)
+        ), true));
+
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Vector3(center.getX() - length / 2, center.getY(), center.getZ() - length / 2),
+                new Vector3(center.getX(), center.getY() - length / (float) sqrt(2), center.getZ()),
+                new Vector3(center.getX() - length / 2, center.getY(), center.getZ() + length / 2)
+        ), true));
+
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Vector3(center.getX() - length / 2, center.getY(), center.getZ() + length / 2),
+                new Vector3(center.getX(), center.getY() - length / (float) sqrt(2), center.getZ()),
+                new Vector3(center.getX() + length / 2, center.getY(), center.getZ() + length / 2)
+        ), true));
+        /*lines.add(new PolyLine3D(Arrays.asList(
                 new Vector3(center.getX() + length / 2, center.getY(), center.getZ() + length / 2),
                 new Vector3(center.getX() + length / 2, center.getY(), center.getZ() - length / 2),
                 new Vector3(center.getX() - length / 2, center.getY(), center.getZ() - length / 2),
@@ -42,7 +88,7 @@ public class Octahedron implements IModel {
                 new Vector3(center.getX(), center.getY() + length / (float) sqrt(2), center.getZ()),
                 new Vector3(center.getX() - length / 2, center.getY(), center.getZ() + length / 2),
                 new Vector3(center.getX(), center.getY() - length / (float) sqrt(2), center.getZ())
-        ), true));
+        ), true));*/
         return lines;
     }
 }
