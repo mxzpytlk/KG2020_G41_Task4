@@ -159,12 +159,15 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent ),
                         new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent ),
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius)
                 ).getCentre()
-
-
         ), true));
 
-        lines.add( new PolyLine3D(Arrays.asList(
+        lines.add(new PolyLine3D(Arrays.asList(
                 new Triangle3D(
                         new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent ),
@@ -174,19 +177,21 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent ),
                         new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent )
-                ).getCentre()
-        ), true));
-
-        lines.add( new PolyLine3D(Arrays.asList(
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent ),
+                        new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent )
+                ).getCentre(),
                 new Triangle3D(
                         new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius),
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent ),
                         new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() )
                 ).getCentre(),
                 new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius),
                         new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent ),
-                        new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
-                        new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent )
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius)
                 ).getCentre()
         ), true));
 
@@ -210,12 +215,15 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
                         new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent ),
                         new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent ),
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius)
                 ).getCentre()
-
-
         ), true));
 
-        lines.add( new PolyLine3D(Arrays.asList(
+        lines.add(new PolyLine3D(Arrays.asList(
                 new Triangle3D(
                         new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
                         new Vector3(center.getX() + radius, center.getY() , center.getZ() + indent ),
@@ -225,47 +233,135 @@ public class Dodecahedron implements IModel {
                         new Vector3(center.getX() + radius, center.getY() , center.getZ() + indent ),
                         new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() ),
                         new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent )
-                ).getCentre()
-        ), true));
-
-        lines.add( new PolyLine3D(Arrays.asList(
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() + indent ),
+                        new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent )
+                ).getCentre(),
                 new Triangle3D(
                         new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius),
                         new Vector3(center.getX() + radius, center.getY() , center.getZ() + indent ),
                         new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() )
                 ).getCentre(),
                 new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius),
                         new Vector3(center.getX() + radius, center.getY() , center.getZ() + indent ),
-                        new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() ),
-                        new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent )
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius)
                 ).getCentre()
         ), true));
 
-        lines.add(new PolyLine3D(
-                Arrays.asList(
-                        new Triangle3D(
-                                new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius),
-                                new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
-                                new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() )
-                        ).getCentre(), new Triangle3D(
-                                new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
-                                new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
-                                new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() )
-                        ).getCentre()
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius),
+                        new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius),
+                        new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
+                        new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
+                        new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent ),
+                        new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent )
+                ).getCentre()
         ), true));
 
-        lines.add(new PolyLine3D(
-                Arrays.asList(
-                        new Triangle3D(
-                                new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
-                                new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
-                                new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() )
-                        ).getCentre(), new Triangle3D(
-                                new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius),
-                                new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
-                                new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() )
-                        ).getCentre()
-                ), true));
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius),
+                        new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() + indent )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() + radius),
+                        new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
+                        new Vector3(center.getX() - indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() + indent, center.getZ() - radius),
+                        new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent ),
+                        new Vector3(center.getX() + indent, center.getY() + radius, center.getZ() ),
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() + indent )
+                ).getCentre()
+        ), true));
+
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
+                        new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
+                        new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius),
+                        new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius),
+                        new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() - indent ),
+                        new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() - radius, center.getY() , center.getZ() + indent )
+                ).getCentre()
+        ), true));
+
+        lines.add(new PolyLine3D(Arrays.asList(
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
+                        new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() + indent )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() + radius),
+                        new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius),
+                        new Vector3(center.getX() - indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX(), center.getY() - indent, center.getZ() - radius),
+                        new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent )
+                ).getCentre(),
+                new Triangle3D(
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() - indent ),
+                        new Vector3(center.getX() + indent, center.getY() - radius, center.getZ() ),
+                        new Vector3(center.getX() + radius, center.getY() , center.getZ() + indent )
+                ).getCentre()
+        ), true));
 
         return lines;
     }

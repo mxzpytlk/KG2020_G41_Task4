@@ -22,14 +22,6 @@ public class Icosahedron implements IModel {
     @Override
     public List<PolyLine3D> getLines() {
         LinkedList<PolyLine3D> lines = new LinkedList<>();
-        /**
-         * Отступ от центра икосаэдра.
-         * Для того, чтобы нарисовать икосаэдр нужно воспользоваться алгоритмом описанным по этой ссылке:
-         * https://www.kakprosto.ru/kak-27767-kak-sdelat-pravilnyy-ikosaedr.
-         * Следоватльно отуп равен половине стороны.
-         * Внешни йрадиус икосаэдра находитя по формуле a / 4 * sqrt(2(5 + sqrt5))),
-         * выражаем сторону через радиус и получаем отступ.
-         */
         float indent = 2 * radius / ( (float) sqrt(10 - 2 * sqrt(5)));
 
         lines.add(new PolyLine3D(Arrays.asList(
