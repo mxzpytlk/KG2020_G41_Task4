@@ -11,6 +11,7 @@ import models.Line3D;
 import models.LineParallelPlaneException;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,6 +46,9 @@ public class ShadowDrawer extends ScreenGraphicsDrawer {
                         continue;
                     }
                     shadowPoints.add(projection);
+                    shadowLines.add(new PolyLine3D(Arrays.asList(
+                            light, projection
+                    ), false));
                 } catch (LineParallelPlaneException e) {
                     continue;
                 }
@@ -70,7 +74,12 @@ public class ShadowDrawer extends ScreenGraphicsDrawer {
         /*создаём хранилище этих точек в виде двух массивов*/
         ScreenCoordinates crds = new ScreenCoordinates(points);
         /*если линия замкнута - рисем полиго, иначе - полилинию*/
-        getGraphics().fillPolygon(crds.getXx(), crds.getYy(), crds.size());
+        if (polyline.isClosed()) {
+            getGraphics().fillPolygon(crds.getXx(), crds.getYy(), crds.size());
+        } else {
+            getGraphics().setColor(Color.YELLOW);
+            getGraphics().drawPolyline(crds.getXx(), crds.getYy(), crds.size());
+        }
     }
 
     @Override

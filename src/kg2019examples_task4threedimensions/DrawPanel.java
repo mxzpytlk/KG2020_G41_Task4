@@ -31,11 +31,11 @@ public class DrawPanel extends JPanel
     private final Camera cam;
     private final CameraController camController;
     private Plane plane = new Plane(0, 0, -1, 300);
-    private Vector3 light = new Vector3(0, 0, -100);
+    private Vector3 light = new Vector3(0, 0, -1000);
 
     public DrawPanel() {
         super();
-        sc = new ScreenConverter(-100, 100, 200, 200, 100, 100);
+        sc = new ScreenConverter(-200, 200, 400, 400, 200, 200);
         cam = new Camera();
         camController = new CameraController(cam, sc);
         scene = new Scene(Color.WHITE.getRGB());

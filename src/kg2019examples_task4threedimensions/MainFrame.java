@@ -35,7 +35,7 @@ public class MainFrame extends JFrame {
         inputPlaneB.setText("0");
         inputPlaneC.setText("-1");
         inputPlaneD.setText("300");
-        lightZSpinner.setValue(-100);
+        lightZSpinner.setValue(-1000);
         tetrahedronBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
