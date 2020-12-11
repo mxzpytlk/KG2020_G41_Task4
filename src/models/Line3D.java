@@ -7,6 +7,9 @@ package models;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import kg2019examples_task4threedimensions.math.Matrix3;
+import kg2019examples_task4threedimensions.math.MatrixException;
 import kg2019examples_task4threedimensions.math.Vector3;
 import kg2019examples_task4threedimensions.third.IModel;
 import kg2019examples_task4threedimensions.third.Plane;
@@ -32,7 +35,21 @@ public class Line3D implements IModel {
                 , false));
     }
 
-//    public Vector3 getIntersectionWithPlane(Plane plane) {
-//
-//    }
+    public Vector3 getIntersectionWithPlane(Plane plane) throws LineParallelPlaneException {
+        float x0 = p1.getX();
+        float n = p2.getX() - p1.getX();
+        float y0 = p1.getY();
+        float m = p2.getY() - p1.getY();
+        float z0 = p1.getZ();
+        float l = p2.getZ() - p1.getZ();
+        Matrix3 matrix = new Matrix3(new float[][]{
+                {m, -n, 0},
+                {0, l, -m},
+                {plane.getA(), plane.getB(), plane.getC()}});
+        try {
+            return matrix.solveSystem(new Vector3(m * x0 - n * y0, l * y0 - m * z0, -plane.getD()));
+        } catch (MatrixException e) {
+            throw new LineParallelPlaneException("Line is in or parallel plane. Impossible to find intersection point");
+        }
+    }
 }

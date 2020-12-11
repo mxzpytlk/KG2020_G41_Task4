@@ -7,11 +7,13 @@ import kg2019examples_task4threedimensions.screen.ScreenPoint;
 import kg2019examples_task4threedimensions.third.IModel;
 import kg2019examples_task4threedimensions.third.Plane;
 import kg2019examples_task4threedimensions.third.PolyLine3D;
+import models.Line3D;
+import models.LineParallelPlaneException;
 
 import java.awt.*;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class ShadowDrawer extends ScreenGraphicsDrawer {
     private static final float EPSILON = 1e-10f;
@@ -26,19 +28,30 @@ public class ShadowDrawer extends ScreenGraphicsDrawer {
         super(sc, gr);
     }
 
-    public void drawShadows(IModel model, Plane plane, Vector3 light) {
+    public List<PolyLine3D> getShadows(IModel model, Plane plane, Vector3 light) {
         if (plane.getA() * light.getX() + plane.getB() * light.getY() +
                 plane.getC() * light.getZ() + plane.getD() <= EPSILON) {
-            return;
+            return new LinkedList<>();
         }
         LinkedList<PolyLine3D> lines = (LinkedList<PolyLine3D>) model.getLines();
+        LinkedList<PolyLine3D> shadowLines = new LinkedList<>();
 
         for (PolyLine3D line : lines) {
-            LinkedList<Vector3> shadowLine = new LinkedList<>();
+            LinkedList<Vector3> shadowPoints = new LinkedList<>();
             for (Vector3 point : line.getPoints()) {
-                
+                try {
+                    Vector3 projection = new Line3D(point, light).getIntersectionWithPlane(plane);
+                    if (projection.getDistanceFromAnotherPoint(light) < projection.getDistanceFromAnotherPoint(point)) {
+                        continue;
+                    }
+                    shadowPoints.add(projection);
+                } catch (LineParallelPlaneException e) {
+                    continue;
+                }
             }
+            shadowLines.add(new PolyLine3D(shadowPoints, true));
         }
+        return shadowLines;
     }
 
     @Override
@@ -47,7 +60,7 @@ public class ShadowDrawer extends ScreenGraphicsDrawer {
         /*переводим все точки в экранные*/
         for (Vector3 v : polyline.getPoints())
             points.add(getScreenConverter().r2s(v));
-        getGraphics().setColor(Color.BLACK);
+        getGraphics().setColor(Color.GRAY);
         /*если точек меньше двух, то рисуем отдельными алгоритмами*/
         if (points.size() < 2) {
             if (points.size() > 0)

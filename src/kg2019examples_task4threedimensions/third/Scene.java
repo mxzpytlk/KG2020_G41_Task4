@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import kg2019examples_task4threedimensions.draw.IDrawer;
+import kg2019examples_task4threedimensions.draw.ShadowDrawer;
 import kg2019examples_task4threedimensions.math.Vector3;
 import models.Line3D;
 
@@ -87,9 +88,33 @@ public class Scene {
                     lines.add(new PolyLine3D(points, pl.isClosed()));
                 }
             }
+
         /*Закрашиваем фон*/
         drawer.clear(backgroundColor);
         /*Рисуем все линии*/
         drawer.draw(lines);
     }
+
+    public void drawScene(ICamera cam,Plane plane, Vector3 light, ShadowDrawer shadowDrawer) {
+        List<PolyLine3D> lines = new LinkedList<>();
+        LinkedList<Collection<? extends IModel>> allModels = new LinkedList<>();
+        allModels.add(models);
+        /*перебираем все полилинии во всех моделях*/
+        for (Collection<? extends IModel> mc : allModels)
+            for (IModel m : mc) {
+                for (PolyLine3D pl : shadowDrawer.getShadows(m, plane, light)) {
+                    /*Все точки конвертируем с помощью камеры*/
+                    List<Vector3> points = new LinkedList<>();
+                    for (Vector3 v : pl.getPoints()) {
+                        points.add(cam.w2s(v));
+                    }
+                    /*Создаём на их сонове новые полилинии, но в том виде, в котором их видит камера*/
+                    lines.add(new PolyLine3D(points, pl.isClosed()));
+                }
+            }
+
+        /*Рисуем все линии*/
+        shadowDrawer.draw(lines);
+    }
+
 }

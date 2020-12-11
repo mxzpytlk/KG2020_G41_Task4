@@ -209,7 +209,7 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
         /*Если зажат Control, то будем менять параметры перспективы, иначе - масштаба*/
         if (e.isControlDown()) {
             /*delta*5f - экспериментально подобранное число. Чем меньше, тем быстрее будет изменяться точка схода*/
-            camera.modifyProjection(Matrix4Factories.centralProjection(delta*5f, Matrix4Factories.Axis.Z));
+            camera.modifyProjection(Matrix4Factories.centralProjection(delta*500f, Matrix4Factories.Axis.Z));
         } else {
             /*Вычислим коэффициент масштаба*/
             float factor = 1;
