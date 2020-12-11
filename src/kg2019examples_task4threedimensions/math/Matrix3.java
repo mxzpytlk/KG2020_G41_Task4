@@ -1,5 +1,7 @@
 package kg2019examples_task4threedimensions.math;
 
+import static java.lang.Math.abs;
+
 public class Matrix3 {
     private final float[] matrix;
     private static final float EPSILON = 1e-10f;
@@ -12,7 +14,7 @@ public class Matrix3 {
 
     public Vector3 solveSystem(Vector3 knownPart) throws MatrixException {
         float determinant = getDeterminant();
-        if (determinant < EPSILON) {
+        if (abs(determinant) < EPSILON) {
             throw new MatrixException("Matrix determinant equals 0. Impossible to find single solution");
         }
 

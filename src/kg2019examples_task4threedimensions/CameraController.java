@@ -114,7 +114,11 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
     private boolean rightFlag = false;
     /*Флаг, фиксирующий, зажата ли сейчас средняя кнопка мыши*/
     private boolean middleFlag = false;
-    
+
+    public Point getLast() {
+        return (Point) last.clone();
+    }
+
     @Override
     public void mousePressed(MouseEvent e) {
         /*Устанавливаем флаги кнопок мыши*/
