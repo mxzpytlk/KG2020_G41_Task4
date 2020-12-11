@@ -24,14 +24,18 @@ public class MainFrame extends JFrame {
     private JSpinner lightYSpinner;
     private JSpinner lightZSpinner;
     private JButton setLightBtn;
+    private JTextField inputPlaneA;
+    private JTextField inputPlaneB;
+    private JTextField inputPlaneC;
+    private JTextField inputPlaneD;
 
     public MainFrame() {
         setContentPane(contentPane);
-        planeASpinner.setValue(15);
-        planeBSpinner.setValue(-40);
-        planeCSpinner.setValue(-14);
-        planeDSpinner.setValue(-40);
-        lightZSpinner.setValue(-200);
+        inputPlaneA.setText("0");
+        inputPlaneB.setText("0");
+        inputPlaneC.setText("-1");
+        inputPlaneD.setText("300");
+        lightZSpinner.setValue(-100);
         tetrahedronBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -65,10 +69,12 @@ public class MainFrame extends JFrame {
         setPlaneBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                dp.setPlane(new Plane(((Integer) planeASpinner.getValue()).floatValue(),
-                        ((Integer) planeBSpinner.getValue()).floatValue(),
-                        ((Integer) planeCSpinner.getValue()).floatValue(),
-                        ((Integer) planeDSpinner.getValue()).floatValue()));
+                dp.setPlane(new Plane(
+                        Float.parseFloat(inputPlaneA.getText()),
+                        Float.parseFloat(inputPlaneB.getText()),
+                        Float.parseFloat(inputPlaneC.getText()),
+                        Float.parseFloat(inputPlaneD.getText())
+                ));
             }
         });
         setLightBtn.addActionListener(new ActionListener() {

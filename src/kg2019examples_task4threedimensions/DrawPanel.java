@@ -30,8 +30,8 @@ public class DrawPanel extends JPanel
     private final ScreenConverter sc;
     private final Camera cam;
     private final CameraController camController;
-    private Plane plane = new Plane(15, -40, -14, -40);
-    private Vector3 light = new Vector3(0, 0, -200);
+    private Plane plane = new Plane(0, 0, -1, 300);
+    private Vector3 light = new Vector3(0, 0, -100);
 
     public DrawPanel() {
         super();
