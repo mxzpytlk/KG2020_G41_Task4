@@ -5,9 +5,11 @@
 package models;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import kg2019examples_task4threedimensions.math.Vector3;
 import kg2019examples_task4threedimensions.third.IModel;
+import kg2019examples_task4threedimensions.third.Plane;
 import kg2019examples_task4threedimensions.third.PolyLine3D;
 
 /**
@@ -25,9 +27,12 @@ public class Line3D implements IModel {
 
     @Override
     public List<PolyLine3D> getLines() {
-        return Arrays.asList(new PolyLine3D(
+        return Collections.singletonList(new PolyLine3D(
                 Arrays.asList(p1, p2)
-            , false));
+                , false));
     }
-    
+
+//    public Vector3 getIntersectionWithPlane(Plane plane) {
+//
+//    }
 }

@@ -4,6 +4,8 @@ import kg2019examples_task4threedimensions.math.Vector3;
 import kg2019examples_task4threedimensions.screen.ScreenConverter;
 import kg2019examples_task4threedimensions.screen.ScreenCoordinates;
 import kg2019examples_task4threedimensions.screen.ScreenPoint;
+import kg2019examples_task4threedimensions.third.IModel;
+import kg2019examples_task4threedimensions.third.Plane;
 import kg2019examples_task4threedimensions.third.PolyLine3D;
 
 import java.awt.*;
@@ -12,6 +14,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 
 public class ShadowDrawer extends ScreenGraphicsDrawer {
+    private static final float EPSILON = 1e-10f;
 
     /**
      * Создаёт экземпляр рисвальщика
@@ -21,6 +24,21 @@ public class ShadowDrawer extends ScreenGraphicsDrawer {
      */
     public ShadowDrawer(ScreenConverter sc, Graphics2D gr) {
         super(sc, gr);
+    }
+
+    public void drawShadows(IModel model, Plane plane, Vector3 light) {
+        if (plane.getA() * light.getX() + plane.getB() * light.getY() +
+                plane.getC() * light.getZ() + plane.getD() <= EPSILON) {
+            return;
+        }
+        LinkedList<PolyLine3D> lines = (LinkedList<PolyLine3D>) model.getLines();
+
+        for (PolyLine3D line : lines) {
+            LinkedList<Vector3> shadowLine = new LinkedList<>();
+            for (Vector3 point : line.getPoints()) {
+                
+            }
+        }
     }
 
     @Override

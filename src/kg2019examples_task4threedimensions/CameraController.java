@@ -161,8 +161,8 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
             int dy = current.y - last.y;
             /*Если двигаем с зажатой левой кнопкой мыши, то вращаем камеру*/
             if (leftFlag) {
-                double da = dx * Math.PI / 180;
-                double db = dy * Math.PI / 280;
+                double da = -dx * Math.PI / 180;
+                double db = -dy * Math.PI / 280;
                 camera.modifyRotate(
                         Matrix4Factories.rotationXYZ(da, Matrix4Factories.Axis.Y)
                     .mul(
@@ -205,7 +205,7 @@ public class CameraController implements MouseListener, MouseMotionListener, Mou
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        int delta = e.getWheelRotation();
+        int delta = -e.getWheelRotation();
         /*Если зажат Control, то будем менять параметры перспективы, иначе - масштаба*/
         if (e.isControlDown()) {
             /*delta*5f - экспериментально подобранное число. Чем меньше, тем быстрее будет изменяться точка схода*/
