@@ -15,6 +15,8 @@ import kg2019examples_task4threedimensions.third.IModel;
 import kg2019examples_task4threedimensions.third.Plane;
 import kg2019examples_task4threedimensions.third.PolyLine3D;
 
+import static java.lang.Math.abs;
+
 /**
  * Описывает трёхмерный отрезок
  * @author Alexey
@@ -22,6 +24,7 @@ import kg2019examples_task4threedimensions.third.PolyLine3D;
 public class Line3D implements IModel {
     private final Vector3 p1;
     private final Vector3 p2;
+    private static final float EPSILON = 1e-10f;
 
     public Line3D(Vector3 p1, Vector3 p2) {
         this.p1 = p1;
@@ -42,12 +45,30 @@ public class Line3D implements IModel {
         float m = p2.getY() - p1.getY();
         float z0 = p1.getZ();
         float l = p2.getZ() - p1.getZ();
-        Matrix3 matrix = new Matrix3(new float[][]{
-                {m, -n, 0},
-                {0, l, -m},
-                {plane.getA(), plane.getB(), plane.getC()}});
+
+        Matrix3 matrix;
+        Vector3 vector;
+        if (abs(m) > EPSILON) {
+            matrix = new Matrix3(new float[][]{
+                    {m, -n, 0},
+                    {0, l, -m},
+                    {plane.getA(), plane.getB(), plane.getC()}});
+            vector = new Vector3(m * x0 - n * y0, l * y0 - m * z0, -plane.getD());
+        } else if (abs(n) > EPSILON) {
+            matrix = new Matrix3(new float[][]{
+                    {m, -n, 0},
+                    {l, 0, -n},
+                    {plane.getA(), plane.getB(), plane.getC()}});
+            vector = new Vector3(m * x0 - n * y0, l * x0 - n * z0, -plane.getD());
+        } else {
+            matrix = new Matrix3(new float[][]{
+                    {l, -n, 0},
+                    {0, l, -m},
+                    {plane.getA(), plane.getB(), plane.getC()}});
+            vector = new Vector3(l * x0 - n * z0, l * y0 - m * z0, -plane.getD());
+        }
         try {
-            return matrix.solveSystem(new Vector3(m * x0 - n * y0, l * y0 - m * z0, -plane.getD()));
+            return matrix.solveSystem(vector);
         } catch (MatrixException e) {
             throw new LineParallelPlaneException("Line is in or parallel plane. Impossible to find intersection point");
         }

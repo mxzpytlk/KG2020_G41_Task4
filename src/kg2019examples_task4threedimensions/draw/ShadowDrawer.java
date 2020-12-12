@@ -16,6 +16,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.lang.Math.abs;
+
 public class ShadowDrawer extends ScreenGraphicsDrawer {
     private static final float EPSILON = 1e-10f;
 
@@ -30,8 +32,8 @@ public class ShadowDrawer extends ScreenGraphicsDrawer {
     }
 
     public List<PolyLine3D> getShadows(IModel model, Plane plane, Vector3 light) {
-        if (plane.getA() * light.getX() + plane.getB() * light.getY() +
-                plane.getC() * light.getZ() + plane.getD() <= EPSILON) {
+        if (abs(plane.getA() * light.getX() + plane.getB() * light.getY() +
+                plane.getC() * light.getZ() + plane.getD()) <= EPSILON) {
             return new LinkedList<>();
         }
         LinkedList<PolyLine3D> lines = (LinkedList<PolyLine3D>) model.getLines();
@@ -42,11 +44,12 @@ public class ShadowDrawer extends ScreenGraphicsDrawer {
             for (Vector3 point : line.getPoints()) {
                 try {
                     Vector3 projection = new Line3D(point, light).getIntersectionWithPlane(plane);
-                    if (projection.getDistanceFromAnotherPoint(light) < projection.getDistanceFromAnotherPoint(point)) {
+                    if (projection.getDistanceFromAnotherPoint(light) < projection.getDistanceFromAnotherPoint(point) ||
+                    light.getDistanceFromAnotherPoint(projection) < light.getDistanceFromAnotherPoint(point)) {
                         continue;
                     }
                     shadowPoints.add(projection);
-                    shadowLines.add(new PolyLine3D(Arrays.asList(
+                    shadowLines.addFirst(new PolyLine3D(Arrays.asList(
                             light, projection
                     ), false));
                 } catch (LineParallelPlaneException e) {

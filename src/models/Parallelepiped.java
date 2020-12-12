@@ -43,7 +43,7 @@ public class Parallelepiped implements IModel {
                 new Vector3(LTF.getX(), RBN.getY(), RBN.getZ()),
                 new Vector3(RBN.getX(), RBN.getY(), RBN.getZ()),
                 new Vector3(RBN.getX(), LTF.getY(), RBN.getZ())), true));
-        
+
         /*Верхняя сторона (Y фиксирован и вязт у LTF)*/
         lines.add(new PolyLine3D(Arrays.asList(new Vector3(LTF.getX(), LTF.getY(), LTF.getZ()),
                 new Vector3(LTF.getX(), LTF.getY(), RBN.getZ()),
@@ -54,7 +54,7 @@ public class Parallelepiped implements IModel {
                 new Vector3(LTF.getX(), RBN.getY(), RBN.getZ()),
                 new Vector3(RBN.getX(), RBN.getY(), RBN.getZ()),
                 new Vector3(RBN.getX(), RBN.getY(), LTF.getZ())), true));
-        
+
         /*Левая сторона (X фиксирован и вязт у LTF)*/
         lines.add(new PolyLine3D(Arrays.asList(new Vector3(LTF.getX(), LTF.getY(), LTF.getZ()),
                 new Vector3(LTF.getX(), LTF.getY(), RBN.getZ()),
